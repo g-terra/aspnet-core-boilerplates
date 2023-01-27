@@ -1,0 +1,2 @@
+namespace aspnet_core_boilerplate_code_first.EfConfigurations.EntityTypeConfigurations;
+

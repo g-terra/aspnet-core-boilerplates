@@ -1,0 +1,12 @@
+version: "3.2"
+services:
+  dev-db:
+    container_name: dev-db
+    image: mcr.microsoft.com/azure-sql-edge
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "@this_is_A_password1"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+     
