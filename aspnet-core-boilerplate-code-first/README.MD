@@ -36,6 +36,10 @@ dotnet ef migrations add {{NameOfMigration}}
 dotnet ef database update
 ```
 
+- to remove the last migration
+```shell
+dotnet ef migrations remove
+```
 
 
 
