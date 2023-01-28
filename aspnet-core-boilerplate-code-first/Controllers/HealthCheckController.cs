@@ -1,4 +1,5 @@
 using System.Net;
+using aspnet_core_boilerplate_code_first.Middlewares.TransactionsHandling;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
@@ -18,12 +19,11 @@ public class HealthCheckController : ControllerBase
     }
 
     [HttpGet]
+    [Transactional]
     public async Task<IActionResult> Get()
     {
         var report = await _service.CheckHealthAsync();
-
-        _logger.LogInformation($"Get Health Information: {report}");
-
+        _logger.LogInformation("Get Health Information: {m}", report);
         return report.Status == HealthStatus.Healthy ? Ok(report) : StatusCode((int)HttpStatusCode.ServiceUnavailable, report);
     }
 }

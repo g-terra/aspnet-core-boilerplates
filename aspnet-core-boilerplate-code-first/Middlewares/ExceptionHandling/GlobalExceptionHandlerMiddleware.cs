@@ -3,7 +3,7 @@ using System.Security.Authentication;
 using aspnet_core_boilerplate_code_first.Exceptions;
 using Newtonsoft.Json;
 
-namespace aspnet_core_boilerplate_code_first.Middlewares.ExecptionHandling;
+namespace aspnet_core_boilerplate_code_first.Middlewares.ExceptionHandling;
 
 public class GlobalExceptionHandlerMiddleware
 {

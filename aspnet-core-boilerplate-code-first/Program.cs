@@ -1,5 +1,6 @@
 using aspnet_core_boilerplate_code_first.Configurations;
-using aspnet_core_boilerplate_code_first.Middlewares.ExecptionHandling;
+using aspnet_core_boilerplate_code_first.Middlewares.ExceptionHandling;
+using aspnet_core_boilerplate_code_first.Middlewares.TransactionsHandling;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,8 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseGlobalErrorHandler();
+
+app.UseTransactionHandler();
 
 app.MapControllers();
 

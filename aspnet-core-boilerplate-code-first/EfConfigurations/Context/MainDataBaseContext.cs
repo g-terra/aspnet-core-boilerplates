@@ -8,8 +8,7 @@ public class MainDataBaseContext : DbContext
 {
 
     private readonly IConfiguration _configuration;
-
-    protected MainDataBaseContext(IConfiguration configuration)
+    public MainDataBaseContext(IConfiguration configuration)
     {
         _configuration = configuration;
     }

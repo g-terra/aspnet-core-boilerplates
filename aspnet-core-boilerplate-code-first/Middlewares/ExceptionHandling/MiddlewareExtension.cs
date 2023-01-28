@@ -1,4 +1,4 @@
-namespace aspnet_core_boilerplate_code_first.Middlewares.ExecptionHandling;
+namespace aspnet_core_boilerplate_code_first.Middlewares.ExceptionHandling;
 
 public static class MiddlewareExtension
 {
