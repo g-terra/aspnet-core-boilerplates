@@ -10,7 +10,7 @@ public static class ContextConfiguration
     {
         services.AddDbContext<MainDataBaseContext>(builder =>
         {
-            builder.UseSqlServer(configuration.GetConnectionString(MainDatabaseConfigurationKey.Get()));
+            builder.UseSqlServer(configuration.GetDefaultConnection());
         });
     }
 }

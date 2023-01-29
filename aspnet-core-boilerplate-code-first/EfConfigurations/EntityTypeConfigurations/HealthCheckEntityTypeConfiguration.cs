@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +21,7 @@ public class HealthCheckEntityTypeConfiguration : IEntityTypeConfiguration<Healt
     public class EfStartup
     {
         public int id { get; set; }
+        
         public string status { get; set; }
     }
 }

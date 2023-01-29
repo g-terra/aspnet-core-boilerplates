@@ -27,11 +27,6 @@ public class GlobalExceptionHandlerMiddleware
             _logger.LogWarning("Warning : {m}", ex.Message);
             await HandleExceptionAsync(context, ex, HttpStatusCode.NotFound);
         }
-        catch (InvalidCredentialException ex)
-        {
-            _logger.LogWarning("Warning : {m}", ex.Message);
-            await HandleExceptionAsync(context, ex, HttpStatusCode.Unauthorized);
-        }
         catch (Exception ex)
         {
             _logger.LogError("Error: {m}", ex.Message);

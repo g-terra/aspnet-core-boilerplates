@@ -22,6 +22,9 @@ public class HealthCheckController : ControllerBase
     [Transactional]
     public async Task<IActionResult> Get()
     {
+
+        throw new Exception("troll");
+        
         var report = await _service.CheckHealthAsync();
         _logger.LogInformation("Get Health Information: {m}", report);
         return report.Status == HealthStatus.Healthy ? Ok(report) : StatusCode((int)HttpStatusCode.ServiceUnavailable, report);

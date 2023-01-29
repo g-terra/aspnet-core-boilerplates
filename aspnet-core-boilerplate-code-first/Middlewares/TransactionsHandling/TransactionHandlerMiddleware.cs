@@ -40,6 +40,7 @@ public class TransactionHandlerMiddleware
 
         try
         {
+
             await _next(httpContext);
             await CommitIf2XXStatus(httpContext, transaction);
         }
@@ -48,6 +49,7 @@ public class TransactionHandlerMiddleware
             await RollBack(transaction);
             throw;
         }
+     
     }
 
     private async Task CommitIf2XXStatus(HttpContext httpContext, IDbContextTransaction transaction)

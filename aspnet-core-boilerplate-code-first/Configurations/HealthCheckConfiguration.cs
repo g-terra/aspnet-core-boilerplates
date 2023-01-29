@@ -9,7 +9,7 @@ public static class HealthCheckConfiguration
     {
         services.AddHealthChecks();
 
-        services.AddHealthChecks().AddSqlServer(configuration.GetConnectionString(MainDatabaseConfigurationKey.Get()));
+        services.AddHealthChecks().AddSqlServer(configuration.GetDefaultConnection());
         
         services.AddHealthChecks().AddDbContextCheck<MainDataBaseContext>();
     }
