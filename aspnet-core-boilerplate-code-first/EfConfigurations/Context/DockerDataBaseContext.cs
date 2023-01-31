@@ -6,7 +6,7 @@ namespace aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 public class MainDataBaseContext : DbContext
 {
 
-    public MainDataBaseContext( DbContextOptions options) : base(options)
+    public MainDataBaseContext( DbContextOptions<MainDataBaseContext> options) : base(options)
     {
         
     }

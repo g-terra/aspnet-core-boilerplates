@@ -6,7 +6,7 @@ namespace aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 public class PjatkDataBaseContext : DbContext
 {
 
-    public PjatkDataBaseContext( DbContextOptions options) : base(options)
+    public PjatkDataBaseContext( DbContextOptions<PjatkDataBaseContext> options) : base(options)
     {
         
     }
