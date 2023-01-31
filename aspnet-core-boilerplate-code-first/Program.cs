@@ -1,5 +1,4 @@
 using aspnet_core_boilerplate_code_first.Configurations;
-using aspnet_core_boilerplate_code_first.Helpers;
 using aspnet_core_boilerplate_code_first.Middlewares.ExceptionHandling;
 using aspnet_core_boilerplate_code_first.Middlewares.TransactionsHandling;
 
@@ -13,6 +12,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.RegisterContext(builder.Configuration);
 
 builder.Services.RegisterHealthCheck(builder.Configuration);
+
+builder.Services.RegisterRepositories();
 
 var app = builder.Build();
 

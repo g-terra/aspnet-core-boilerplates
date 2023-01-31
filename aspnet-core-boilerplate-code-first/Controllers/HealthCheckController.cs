@@ -1,7 +1,10 @@
 using System.Net;
+using aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 using aspnet_core_boilerplate_code_first.Middlewares.TransactionsHandling;
+using aspnet_core_boilerplate_code_first.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using static aspnet_core_boilerplate_code_first.EfConfigurations.EntityTypeConfigurations.HealthCheckEntityTypeConfiguration;
 
 namespace aspnet_core_boilerplate_code_first.Controllers;
 
@@ -11,22 +14,24 @@ public class HealthCheckController : ControllerBase
 {
     private readonly ILogger<HealthCheckController> _logger;
     private readonly HealthCheckService _service;
+    private readonly GenericRepository<EfStartup, PjatkDataBaseContext> _repository;
 
-    public HealthCheckController(ILogger<HealthCheckController> logger, HealthCheckService service)
+    public HealthCheckController(ILogger<HealthCheckController> logger, HealthCheckService service, GenericRepository<EfStartup, PjatkDataBaseContext> repository)
     {
         _logger = logger;
         _service = service;
+        _repository = repository;
     }
 
     [HttpGet]
     [Transactional]
-    public async Task<IActionResult> Get()
+    public  IActionResult Get()
     {
-
-        throw new Exception("troll");
-        
-        var report = await _service.CheckHealthAsync();
-        _logger.LogInformation("Get Health Information: {m}", report);
-        return report.Status == HealthStatus.Healthy ? Ok(report) : StatusCode((int)HttpStatusCode.ServiceUnavailable, report);
+        return Ok( _repository.Insert(new EfStartup
+        {
+            status = "test"
+        }));
     }
+    
+    
 }
