@@ -11,13 +11,13 @@ following non default dependencies were added:
 - AspNetCore.HealthChecks.SqlServer
 - Newtonsoft.Json
 
-To run the project in development mode, it is necessary to first run the command
+To run the project in development mode with a docker db, it is necessary to first run the command
 it will start a instance of MS SQL
 ```shell 
 make dev-db-up
 ```
 
-to stop the instance
+to stop the instance:
 
 ```shell 
 make dev-db-down
@@ -28,12 +28,12 @@ make dev-db-down
 
 - to create a new migration:
 ```shell
-dotnet ef migrations add {{NameOfMigration}} --context {{context name}}
+dotnet ef migrations add {{NameOfMigration}} 
 ```
 
 - to update the database with accordingly to the migrations:
 ```shell
-dotnet ef database update --context {{context name}}
+dotnet ef database update 
 ```
 
 - to remove the last migration

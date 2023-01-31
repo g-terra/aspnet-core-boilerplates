@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 
-public class MainDataBaseContext : DbContext
+public class DefaultDbContext : DbContext
 {
 
-    public MainDataBaseContext( DbContextOptions<MainDataBaseContext> options) : base(options)
+    public DefaultDbContext(DbContextOptions options) : base(options)
     {
         
     }

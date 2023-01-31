@@ -1,5 +1,6 @@
 using aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace aspnet_core_boilerplate_code_first.Middlewares.TransactionsHandling;
@@ -15,7 +16,7 @@ public class TransactionHandlerMiddleware
         _logger = logger;
     }
 
-    public async Task InvokeAsync(HttpContext httpContext, MainDataBaseContext dbContext)
+    public async Task InvokeAsync(HttpContext httpContext, DefaultDbContext dbContext)
     {
         if (IsTransactionalContext(httpContext))
         {
@@ -26,21 +27,20 @@ public class TransactionHandlerMiddleware
             await _next(httpContext);
         }
     }
-    
+
     private static bool IsTransactionalContext(HttpContext httpContext)
     {
         var endpoint = httpContext.Features.Get<IEndpointFeature>()?.Endpoint;
         return endpoint?.Metadata.GetMetadata<TransactionalAttribute>() != null;
     }
 
-    private async Task HandleTransaction(HttpContext httpContext, MainDataBaseContext dbContext)
+    private async Task HandleTransaction(HttpContext httpContext, DbContext dbContext)
     {
         await using var transaction = await dbContext.Database.BeginTransactionAsync();
         _logger.LogInformation("transaction started");
 
         try
         {
-
             await _next(httpContext);
             await CommitIf2XXStatus(httpContext, transaction);
         }
@@ -49,11 +49,13 @@ public class TransactionHandlerMiddleware
             await RollBack(transaction);
             throw;
         }
-     
     }
 
     private async Task CommitIf2XXStatus(HttpContext httpContext, IDbContextTransaction transaction)
     {
+        await transaction.CreateSavepointAsync("start");
+
+
         if (httpContext.Response.StatusCode is >= 200 and < 300)
         {
             await Commit(transaction);
@@ -72,9 +74,7 @@ public class TransactionHandlerMiddleware
 
     private async Task RollBack(IDbContextTransaction transaction)
     {
-        await transaction.RollbackAsync();
+        await transaction.RollbackToSavepointAsync("start");
         _logger.LogInformation("transaction rolled back");
     }
-    
- 
 }

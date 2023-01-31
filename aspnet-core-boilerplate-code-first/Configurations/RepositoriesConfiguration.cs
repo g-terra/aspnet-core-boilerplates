@@ -8,6 +8,6 @@ public static class RepositoriesConfiguration
 {
     public static void RegisterRepositories(this IServiceCollection services)
     {
-        services.AddScoped<GenericRepository<EfStartup,PjatkDataBaseContext>>();
+        services.AddScoped<GenericRepository<EfStartup,DefaultDbContext>>();
     }
 }

@@ -11,8 +11,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterContext(builder.Configuration);
 
-builder.Services.RegisterHealthCheck(builder.Configuration);
-
 builder.Services.RegisterRepositories();
 
 var app = builder.Build();

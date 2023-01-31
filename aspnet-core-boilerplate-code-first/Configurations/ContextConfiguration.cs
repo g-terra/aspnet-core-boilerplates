@@ -8,14 +8,9 @@ public static class ContextConfiguration
 {
     public static void RegisterContext(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<MainDataBaseContext>(builder =>
+        services.AddDbContext<DefaultDbContext>(builder =>
         {
             builder.UseSqlServer(configuration.GetDefaultConnection());
-        });
-        
-        services.AddDbContext<PjatkDataBaseContext>(builder =>
-        {
-            builder.UseSqlServer(configuration.GetPjatkConnection());
         });
     }
 }

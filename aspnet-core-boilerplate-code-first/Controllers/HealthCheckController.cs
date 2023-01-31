@@ -12,14 +12,10 @@ namespace aspnet_core_boilerplate_code_first.Controllers;
 [Route("/health-check")]
 public class HealthCheckController : ControllerBase
 {
-    private readonly ILogger<HealthCheckController> _logger;
-    private readonly HealthCheckService _service;
-    private readonly GenericRepository<EfStartup, PjatkDataBaseContext> _repository;
+    private readonly GenericRepository<EfStartup, DefaultDbContext> _repository;
 
-    public HealthCheckController(ILogger<HealthCheckController> logger, HealthCheckService service, GenericRepository<EfStartup, PjatkDataBaseContext> repository)
+    public HealthCheckController(GenericRepository<EfStartup, DefaultDbContext> repository)
     {
-        _logger = logger;
-        _service = service;
         _repository = repository;
     }
 
@@ -27,10 +23,13 @@ public class HealthCheckController : ControllerBase
     [Transactional]
     public  IActionResult Get()
     {
-        return Ok( _repository.Insert(new EfStartup
+        var efStartup = _repository.Insert(new EfStartup
         {
             status = "test"
-        }));
+        });
+        
+        
+        return Ok(efStartup);
     }
     
     
