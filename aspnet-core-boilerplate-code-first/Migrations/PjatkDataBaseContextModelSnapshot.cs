@@ -9,8 +9,8 @@ using aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 
 namespace aspnet_core_boilerplate_code_first.Migrations
 {
-    [DbContext(typeof(MainDataBaseContext))]
-    partial class MainDataBaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PjatkDataBaseContext))]
+    partial class PjatkDataBaseContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

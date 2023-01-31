@@ -5,5 +5,10 @@ public static class ConfigurationExtensions
     public static string GetDefaultConnection(this IConfiguration configuration)
     {
         return configuration.GetConnectionString("DefaultConnection");
+    } 
+    
+    public static string GetPjatkConnection(this IConfiguration configuration)
+    {
+        return configuration.GetConnectionString("PjatkConnection");
     }
 }

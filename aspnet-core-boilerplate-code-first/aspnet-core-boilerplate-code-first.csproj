@@ -28,10 +28,4 @@
       <Folder Include="Services" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="EfConfigurations\EntityTypeConfigurations\HealthCheck.cs">
-        <DependentUpon>HealthCheckEntityTypeConfiguration.cs</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
 </Project>

@@ -4,7 +4,7 @@
 
 namespace aspnet_core_boilerplate_code_first.Migrations
 {
-    public partial class InitialDbConfiguration : Migration
+    public partial class InitialConfig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

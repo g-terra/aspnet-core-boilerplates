@@ -12,5 +12,10 @@ public static class ContextConfiguration
         {
             builder.UseSqlServer(configuration.GetDefaultConnection());
         });
+        
+        services.AddDbContext<PjatkDataBaseContext>(builder =>
+        {
+            builder.UseSqlServer(configuration.GetPjatkConnection());
+        });
     }
 }

@@ -28,17 +28,17 @@ make dev-db-down
 
 - to create a new migration:
 ```shell
-dotnet ef migrations add {{NameOfMigration}}
+dotnet ef migrations add {{NameOfMigration}} --context {{context name}}
 ```
 
 - to update the database with accordingly to the migrations:
 ```shell
-dotnet ef database update
+dotnet ef database update --context {{context name}}
 ```
 
 - to remove the last migration
 ```shell
-dotnet ef migrations remove
+dotnet ef migrations remove 
 ```
 
 

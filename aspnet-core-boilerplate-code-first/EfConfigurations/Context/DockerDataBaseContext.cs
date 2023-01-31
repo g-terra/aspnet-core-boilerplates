@@ -8,6 +8,7 @@ public class MainDataBaseContext : DbContext
 
     public MainDataBaseContext( DbContextOptions options) : base(options)
     {
+        
     }
 
     public DbSet<HealthCheckEntityTypeConfiguration.EfStartup> EfStartup { get; set; }

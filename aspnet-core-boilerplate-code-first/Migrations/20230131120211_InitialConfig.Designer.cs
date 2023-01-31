@@ -10,9 +10,9 @@ using aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 
 namespace aspnet_core_boilerplate_code_first.Migrations
 {
-    [DbContext(typeof(MainDataBaseContext))]
-    [Migration("20230127152321_InitialDbConfiguration")]
-    partial class InitialDbConfiguration
+    [DbContext(typeof(PjatkDataBaseContext))]
+    [Migration("20230131120211_InitialConfig")]
+    partial class InitialConfig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
