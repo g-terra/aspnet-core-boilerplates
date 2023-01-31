@@ -13,6 +13,8 @@ builder.Services.RegisterContext(builder.Configuration);
 
 builder.Services.RegisterRepositories();
 
+builder.Services.RegisterBusinessServices();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

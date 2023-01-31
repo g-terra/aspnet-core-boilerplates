@@ -1,9 +1,6 @@
-using System.Net;
 using aspnet_core_boilerplate_code_first.EfConfigurations.Context;
 using aspnet_core_boilerplate_code_first.Middlewares.TransactionsHandling;
-using aspnet_core_boilerplate_code_first.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using static aspnet_core_boilerplate_code_first.EfConfigurations.EntityTypeConfigurations.HealthCheckEntityTypeConfiguration;
 
 namespace aspnet_core_boilerplate_code_first.Controllers;
@@ -12,18 +9,18 @@ namespace aspnet_core_boilerplate_code_first.Controllers;
 [Route("/health-check")]
 public class HealthCheckController : ControllerBase
 {
-    private readonly GenericRepository<EfStartup, DefaultDbContext> _repository;
+    private readonly DefaultDbContext _dbContext;
 
-    public HealthCheckController(GenericRepository<EfStartup, DefaultDbContext> repository)
+    public HealthCheckController(DefaultDbContext dbContext)
     {
-        _repository = repository;
+        _dbContext = dbContext;
     }
 
     [HttpGet]
     [Transactional]
     public  IActionResult Get()
     {
-        var efStartup = _repository.Insert(new EfStartup
+        var efStartup = _dbContext.EfStartup.Add(new EfStartup
         {
             status = "test"
         });
